@@ -1,0 +1,24 @@
+{% extends "notes/index.html" %}
+
+{% block content_note %}
+{% for note in notes %}
+<div class="card" id={{note.id}}>
+
+  <form class="delete-form" method="POST" action="delete">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{note.id}}">
+    <button class="btn" id="delete" type="submit">&#10060;</button>
+  </form>
+
+  <form class="update-form" method="POST" action="update" autocomplete="off">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{note.id}}">
+    <input id="card-{{note.id}}-title" class="card-title" name="title" value="{{note.title}}"/>
+    <textarea id="card-{{note.id}}-details" class="card-details" name="content">{{note.content}}</textarea>
+    <input id="card-{{note.id}}-tag" class="card-tag" name="tag" value="{{note.tag.tag}}"/>
+    <button class="btn" id="update" type="submit">&#9997;</button>
+  </form>
+  
+</div>
+{% endfor %}
+{% endblock %}

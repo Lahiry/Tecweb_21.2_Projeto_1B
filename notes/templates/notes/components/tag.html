@@ -1,0 +1,27 @@
+{% extends "notes/lista_tags.html" %}
+
+{% block content_tag %}
+{% for tag in tags %}
+<div class="card" id={{tag.id}}>
+
+  <form class="get-form" method="GET" action="get-tag" autocomplete="off">
+    <input type="hidden" name="tag-id" value="{{tag.id}}">
+    <button class="btn" id="get" type="submit">&#9989;</button>
+  </form>
+
+  <form class="delete-form" method="POST" action="delete-tag">
+    {% csrf_token %}
+    <input type="hidden" name="tag-id" value="{{tag.id}}">
+    <button class="btn" id="delete" type="submit">&#10060;</button>
+  </form>
+
+  <form class="update-form" method="POST" action="update-tag" autocomplete="off">
+    {% csrf_token %}
+    <input type="hidden" name="tag-id" value="{{tag.id}}">
+    <input id="tag-{{tag.id}}" class="tag-content" name="tag" value="{{tag.tag}}"/>
+    <button class="btn" id="update" type="submit">&#9997;</button>
+  </form>
+  
+</div>
+{% endfor %}
+{% endblock %}

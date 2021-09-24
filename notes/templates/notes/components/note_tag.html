@@ -1,0 +1,11 @@
+{% extends "notes/tag_filtro.html" %}
+
+{% block content_note_tag %}
+{% for note in notes %}
+<div class="card" id={{note.id}}>
+    <h2 id="card-{{note.id}}-title" class="card-title">{{note.title}}</h2>
+    <p id="card-{{note.id}}-details" class="card-details">{{note.content}}</p>
+</div>
+{% endfor %}
+{% endblock %}
+
