@@ -15,6 +15,7 @@
     <input type="hidden" name="id" value="{{note.id}}">
     <input id="card-{{note.id}}-title" class="card-title" name="title" value="{{note.title}}"/>
     <textarea id="card-{{note.id}}-details" class="card-details" name="content">{{note.content}}</textarea>
+    <input type="hidden" name="tag-id" value="{{note.tag.id}}">
     <input id="card-{{note.id}}-tag" class="card-tag" name="tag" value="{{note.tag.tag}}"/>
     <button class="btn" id="update" type="submit">&#9997;</button>
   </form>

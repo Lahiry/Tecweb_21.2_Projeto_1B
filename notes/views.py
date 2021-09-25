@@ -25,6 +25,7 @@ def update(request):
         note_title = request.POST.get('title')
         note_content = request.POST.get('content')
         note_tag = request.POST.get('tag')
+        tag_id = request.POST.get('tag-id')
         note = Note.objects.get(id=note_id)
         note.title = note_title
         note.content = note_content
@@ -32,7 +33,13 @@ def update(request):
             Tag.objects.get_or_create(tag=note_tag)
             tag = Tag.objects.get(tag=note_tag)
             note.tag = tag
+        else:
+            note.tag = None
+        if tag_id != '' and len(Note.objects.filter(tag=Tag.objects.get(id=tag_id))) == 1:
+            Tag.objects.get(id=tag_id).delete()
+        
         note.save()
+
         return redirect('index')
 
 def delete(request):
@@ -66,8 +73,15 @@ def update_tag(request):
         tag_id = request.POST.get('tag-id')
         tag_content = request.POST.get('tag')
         tag = Tag.objects.get(id=tag_id)
-        tag.tag = tag_content
-        tag.save()
+        if len(Tag.objects.filter(tag=tag_content)) > 0:
+            notes = Note.objects.filter(tag=tag)
+            for note in notes:
+                note.tag = Tag.objects.get(tag=tag_content)
+            tag.delete()
+        else:
+            tag.tag = tag_content
+            tag.save()
+        note.save()
         return redirect('tags')
 
 

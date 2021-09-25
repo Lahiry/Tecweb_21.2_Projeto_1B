@@ -30,7 +30,6 @@ body {
 .appbar{
   display: flex;
   align-items: center;
-  justify-items: center;
   background-color: #f1dd37;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
 }
@@ -38,6 +37,27 @@ body {
 .logo{
   width: 5%;
   margin: 0.5rem;
+}
+
+.subtitle_home {
+  position: absolute;
+  font-family: 'Permanent Marker', cursive;
+  font-size: x-large;
+  right: 48%;
+}
+
+.subtitle_tags {
+  position: absolute;
+  font-family: 'Permanent Marker', cursive;
+  font-size: x-large;
+  right: 48%;
+}
+
+.subtitle_tag {
+  position: absolute;
+  font-family: 'Permanent Marker', cursive;
+  font-size: x-large;
+  right: 45%;
 }
 
 .form-filtro-tags {
