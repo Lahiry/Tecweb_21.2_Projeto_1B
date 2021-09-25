@@ -73,7 +73,7 @@ def update_tag(request):
         tag_id = request.POST.get('tag-id')
         tag_content = request.POST.get('tag')
         tag = Tag.objects.get(id=tag_id)
-        if len(Tag.objects.filter(tag=tag_content)) > 0:
+        if len(Tag.objects.filter(tag=tag_content)) > 1:
             notes = Note.objects.filter(tag=tag)
             for note in notes:
                 note.tag = Tag.objects.get(tag=tag_content)
